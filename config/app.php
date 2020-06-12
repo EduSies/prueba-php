@@ -108,8 +108,12 @@ return [
 
     'faker_locale' => 'en_US',
 
-    // Languages ​​allowed
-    'languages' => ['es','ca','en'],
+    // Languages ​​Allowed
+    'languages' => [
+        'es',
+        'ca',
+        'en',
+    ],
 
     /*
     |--------------------------------------------------------------------------

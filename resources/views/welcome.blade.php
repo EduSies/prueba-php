@@ -65,8 +65,23 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title m-b-md">{{ __('home.title_home') }}</div>
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">{{ __('home.home') }}</a>
+                    @else
+                        <a href="{{ route('login',['lang' => APP::getLocale()]) }}">{{ __('home.login') }}</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register',['lang' => APP::getLocale()]) }}">{{ __('home.register') }}</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+            <div class="content links">
+                <a href="{{ route('home') }}">
+                    <div class="title m-b-md">{{ __('home.title_home') }}</div>
+                </a>
                 <div class="links">
                     <a href="{{ route('home',['lang' => 'es']) }}">{{ __('home.lang_es') }}</a>
                     <a href="{{ route('home',['lang' => 'ca']) }}">{{ __('home.lang_ca') }}</a>

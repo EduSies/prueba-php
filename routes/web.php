@@ -13,10 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('{lang?}')->group(function() {
+Route::group([
+    'prefix' => '{lang?}',
+    'where' => ['lang' => '[a-zA-Z]{2}']
+], function() {
 
     Route::get('/', function () {
         return view('welcome');
     })->name('home');
+
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login');
+
+    Route::get('/register', function () {
+        return view('auth.register');
+    })->name('register');
+
+
+    Auth::routes();
+
+    Route::get('/home', 'HomeController@index')->name('home2');
 
 });
